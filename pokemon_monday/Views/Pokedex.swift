@@ -3,7 +3,7 @@ import SwiftUI
 struct PokedexView: View {
     @State private var searchText = ""
     //for all
-    //@State private var pokemons: [PokemonResult] = []
+    @State private var pokemons: [PokemonResult] = []
 
     
     private let columns = [
@@ -12,14 +12,14 @@ struct PokedexView: View {
     ]
     
         
-    let pokemons = [
+    /*let pokemons = [
         PokemonListItem(id: 1, name: "Bulbasaur"),
         PokemonListItem(id: 2, name: "Ivysaur"),
         PokemonListItem(id: 3, name: "Venusaur"),
         PokemonListItem(id: 4, name: "Charmander"),
         PokemonListItem(id: 5, name: "Charmeleon"),
         PokemonListItem(id: 6, name: "Charizard")
-    ] 
+    ] */
     var body: some View {
         NavigationView {
             ScrollView {
@@ -72,7 +72,7 @@ struct PokedexView: View {
                 }
             }
             // forAll
-            /*.onAppear {
+            .onAppear {
                 fetchPokemonList { result in
                     switch result {
                     case .success(let data):
@@ -82,7 +82,7 @@ struct PokedexView: View {
                         print(error)
                     }
                 }
-            } */
+            } 
             
             
             
