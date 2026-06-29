@@ -10,13 +10,42 @@ struct PokemonDetailView: View {
             if let detail = detail {
                 Text(detail.name.capitalized)
                     .font(.largeTitle)
+                
+                if let imageUrl = detail.sprites.other.officialArtwork.frontDefault {
+                        AsyncImage(url: URL(string: imageUrl)) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 200, height: 200)
+                        } placeholder: {
+                            ProgressView()
+                        }
+                    }
 
-                Text("Weight: \(detail.weight)")
+                Text("Weight: \(detail.weight) kg" )
                 Text("Height: \(detail.height)")
 
                 ForEach(detail.types, id: \.type.name) { item in
                     Text(item.type.name.capitalized)
                 }
+                
+                Divider()
+                
+                Text("Base Stats")
+                    .font(.title2)
+                    .bold()
+                
+                ForEach(detail.stats, id: \.stat.name) { stat in
+                    HStack {
+                        Text(stat.stat.name.capitalized)
+                        Spacer()
+                        Text("\(stat.baseStat)")
+                           
+                    }
+                    .padding(.horizontal, 20)
+                }
+                
+                
             } else {
                 ProgressView()
             }
