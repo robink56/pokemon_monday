@@ -21,13 +21,19 @@ struct PokemonDetailView: View {
                             ProgressView()
                         }
                     }
-
-                Text("Weight: \(detail.weight) kg" )
-                Text("Height: \(detail.height)")
-
+                
+            HStack {
                 ForEach(detail.types, id: \.type.name) { item in
                     Text(item.type.name.capitalized)
                 }
+                    
+                }
+               
+
+                Text("Weight: \(detail.weight) kg" )
+                Text("Height: \(detail.height) inch")
+
+                
                 
                 Divider()
                 
@@ -60,6 +66,24 @@ struct PokemonDetailView: View {
                 }
             }
         }
+        
+        //for all
+        
+        /*.onAppear {
+            FetchPokemonList.shared.fetchPokemonList { result in
+                switch result {
+                case .success(let data):
+                    pokemons = data
+
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        } */
+        
+        
+        
+        
     }
 }
 

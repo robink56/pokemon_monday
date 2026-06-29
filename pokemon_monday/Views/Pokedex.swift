@@ -2,14 +2,24 @@ import SwiftUI
 
 struct PokedexView: View {
     @State private var searchText = ""
+    //for all
+    //@State private var pokemons: [PokemonResult] = []
+
     
     private let columns = [
         GridItem(.flexible(), spacing: 10),
         GridItem(.flexible(), spacing: 10)
     ]
     
-    let pokemons = ["Bulbasaur", "Ivysaur", "Venusaur", "Charmander", "Charmeleon", "Charizard"]
-    
+        
+    let pokemons = [
+        PokemonListItem(id: 1, name: "Bulbasaur"),
+        PokemonListItem(id: 2, name: "Ivysaur"),
+        PokemonListItem(id: 3, name: "Venusaur"),
+        PokemonListItem(id: 4, name: "Charmander"),
+        PokemonListItem(id: 5, name: "Charmeleon"),
+        PokemonListItem(id: 6, name: "Charizard")
+    ] 
     var body: some View {
         NavigationView {
             ScrollView {
@@ -18,22 +28,23 @@ struct PokedexView: View {
                     .foregroundColor(.gray)
                 
                 LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(pokemons, id: \.self) { pokemon in
+                    ForEach(pokemons) { pokemon in
                         NavigationLink {
-                            PokemonDetailView(pokemonName: pokemon)
-                            Text("\(pokemon) Detail View")
+                            PokemonDetailView(pokemonName: pokemon.name)
+                            Text("\(pokemon.name) Detail View")
                         } label: {
                             VStack {
-                                Circle()
-                                    .fill(Color.gray.opacity(0.2))
-                                    .frame(width: 90, height: 90)
-                                    .overlay(
-                                        Text("Image")
-                                            .font(.caption)
-                                            .foregroundColor(.gray)
-                                    )
+                                AsyncImage(url: URL(string: pokemon.imageUrl)) { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 90, height: 90)
+                                } placeholder: {
+                                    ProgressView()
+                                        .frame(width: 90, height: 90)
+                                }
                                 
-                                Text(pokemon)
+                                Text(pokemon.name.capitalized)
                                     .font(.headline)
                                     .foregroundColor(.black)
                             }
@@ -60,6 +71,21 @@ struct PokedexView: View {
                     }
                 }
             }
+            // forAll
+            /*.onAppear {
+                fetchPokemonList { result in
+                    switch result {
+                    case .success(let data):
+                        pokemons = data
+
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            } */
+            
+            
+            
         }
        
          
