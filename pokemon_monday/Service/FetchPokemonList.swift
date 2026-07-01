@@ -11,7 +11,7 @@ import Alamofire
 func fetchPokemonList(
     completion: @escaping (Result<[PokemonResult], AFError>) -> Void
 ) {
-    let url = "https://pokeapi.co/api/v2/pokemon?limit=151"
+    let url = "https://pokeapi.co/api/v2/pokemon?limit=150"
 
     AF.request(url)
         .validate()

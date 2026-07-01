@@ -19,13 +19,13 @@ struct PokemonType: Codable {
 }
 
 struct PokemonStat: Codable {
-    let baseStat: Int
+    let base_stat: Int
     let stat: StatInfo
 
-    enum CodingKeys: String, CodingKey {
+    /*enum CodingKeys: String, CodingKey {
         case baseStat = "base_stat"
         case stat
-    }
+    }*/
 }
 
 struct StatInfo: Codable {
@@ -45,9 +45,9 @@ struct OtherSprites: Codable {
 }
 
 struct OfficialArtwork: Codable {
-    let frontDefault: String?
+    let front_default: String?
 
-    enum CodingKeys: String, CodingKey {
+    /*enum CodingKeys: String, CodingKey {
         case frontDefault = "front_default"
-    }
+    }*/
 }

@@ -11,7 +11,7 @@ struct PokemonDetailView: View {
                 Text(detail.name.capitalized)
                     .font(.largeTitle)
                 
-                if let imageUrl = detail.sprites.other.officialArtwork.frontDefault {
+                if let imageUrl = detail.sprites.other.officialArtwork.front_default {
                         AsyncImage(url: URL(string: imageUrl)) { image in
                             image
                                 .resizable()
@@ -45,7 +45,7 @@ struct PokemonDetailView: View {
                     HStack {
                         Text(stat.stat.name.capitalized)
                         Spacer()
-                        Text("\(stat.baseStat)")
+                        Text("\(stat.base_stat)")
                            
                     }
                     .padding(.horizontal, 20)
